@@ -1,0 +1,24 @@
+*{
+    padding: 0;
+    margin:0;
+}
+.blogTitle{
+    background: #f7f6e9;
+    width: 100%;
+    padding:30px;
+
+}
+body{
+    background-color: rgb(211, 210, 210);
+}
+.container{
+     background-color:white;
+    max-width: 600px;
+    min-height: 100vh;
+    margin:auto;
+}
+article{
+   
+    padding:15px;
+    
+}
