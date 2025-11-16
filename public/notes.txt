@@ -1,0 +1,219 @@
+
+// Route::get('/', function () {
+//       return view('welcome'); //ဒါက သူ့ default ခေါ်တဲ့ဟာ
+//     // return "Creative Coder";
+//     // return ["key"=>"Creative Coder"]; ဆိုလိုတာက view file ကိုပဲ return ပြန်လို့ရတာမဟုတ်ဘူး ဘာကိုထည့်ထည့် သူကပြောင်းပေါ်ပေးမှာ
+//     //return view('blogs');
+
+// });
+
+// Route::get('/blog', function () {
+   
+//     // return view('blog');
+//     // return view('blog',[
+//     //     'blog'=>'<h1>Data</h1>'
+//     // ]);
+//     // return _DIR_; //error တက်
+//   //return view('blog',[
+//         //'blog'=>$blog
+//    // ]);
+// });
+
+
+// Route::get('/about', function () {
+//     return view('about');
+// }
+// );
+// Route::get('/', function () {
+//     $person =[
+//         'name'=> 'Zura',
+//         'email'=> '2ura@gmail.com'
+//     ];
+//     dd($person);
+//     return view('welcome');
+// });
+// Route::match(['get','post'],'/' ,function () {
+//     //....ဒါကကျ method တစ်ခုမကလက်ခံတာမျိုး
+// });
+// Route::any('/',function () {
+//     //........ဘာနဲ့ဝင်ဝင်ဒီအလုပ်ကိုလုပ်ပေးမှာ
+// });
+
+// Route::redirect('/home', '/'); // ဒါက နောက်တစ်နေရာကို ထပ်သွားတာမျိုး
+// Route::permanentRedirect('/home','/');
+// //permanentRedirect နဲ့ နောက်က 301 ထည့်တာနဲ့ အတူတူပဲ
+// Route::redirect('/home','/',301); // perment redirect ဆိုတဲ့ အဓိပ္ပါယ်ပဲ
+// Route::view('/contact','contact'); //ဒီလိုရေးတာနဲ့ အပေါ်မှာ function နဲ့ ရေးတာနဲ့အတူတူပဲ
+
+// Route::view('/contact','contact',['phone'=> '+95571234566']); 
+// //ဒါကျ info ထည့်ပေးလိုက်တဲ့သဘော
+
+// Route::get('/product/{id}', function (String $id) {
+//     return "Product ID is $id";
+// });
+// Route::get("{lang}/product/{id}/review/{reviewID}", function (String $lang,String $id,String $reivewID) {
+//     // ဒီမှာ ပါတဲ့ variable အတွက် ဘာထည့်ထည့်ရတယ်
+// });
+// Route::get("/myproduct/{category?}", function (String $categroy=null){
+//     //ဒါကျ နောက်ကဟာမပါရင် default ထည့်ပေးထားတာ ? ထည့်ဖို့ မမေ့ရန်
+//     return "Product for category= $categroy";
+// });
+
+// Route::get("/product/{id}", function (String $id){
+//     return "Works! $id";
+//     //ဒါကိုမှ number ဖြစ်ရမယ်ဆိုရင် အောက်မှာစစ်ပေးရမှာ
+
+// })->whereNumber(parameters:'id');
+// Route::get('/user/{username}', function (String $username) {
+// })->whereAlpha(parameters:'username');
+
+// Route::get('{lang}/product/{id}', function (String $username,String $id) {
+// })->whereAlpha(parameters:'lang')
+// ->whereNumber(parameters:'id');
+
+// Route::get('{lang}/products', function (String $lang) {
+//     //... whereIn က အဲ့‌arraထေဲက ဟာပဲရမှာ ကျန်တာမရဘူးလိ့ပြောတာ
+// })->whereIn('lang',['en','ka','in']);
+// Route::get('/search/{search}', function (String $search) {
+//     return $search;
+// });
+// Route::get('/user/{username}', function (String $username) {
+//     //ဒါကျ စာလုံးအသေးကိုပဲလက်ခံတာ 
+// })->where('username' ,'[a-z]+');
+// Route::get('{lang}/product/{id}', function (String $lang,String $id) {
+//     //lang ကို အသေး ၂ လုံးထိပဲလက်ခံပြီး id ကို number အနည်းဆုံး ၄ လုံး လက်ခံတာ
+// }
+// )->where(['lang'=>'[a-z]{2}',
+//                 'id'=>"\d{4,}"]);
+
+// Route::get("/search/{search}", function (String $search) {
+//     return $search;
+//     //ဒါကျ where ဘာလို့နှစ်ခါထပ်တာလဲ မသိတော့ဘူး ဟီး
+// })->where("search")->where("search",".+");
+
+// Route::get("/", function () {
+//     //$aboutPageUrl="/about";
+//     //$aboutPageUrl= route("/about"); ဒါကျ run မရ
+//     $productPageUrl=route('product.view',
+//     ['lang'=>'en','id'=>1]);
+//     //dd($aboutPageUrl);
+//     dd($productPageUrl); // ဒါလည်းမရ ဒီ route က တစ်ခုခုလိုနေတာထင် ဘာသင်သွားလဲမမှတ်မိ အိပ်ငိုက်လို့ဖြစ်မယ်
+// });
+// // Route::get('/about','about')->name('about');
+// Route::get('/{lang}/product/{id}', function(String $lang,String $id){
+//     //...
+// })->name('product.view'); // ဒါက နာမည်သတ်မှတ်လိုက်တာ ဆိုလိုတာက redirect ခေါ်ရင် ပေးထားတဲ့ နာမည်နဲ့ခေါ်ရင်ရပြီ
+
+// Route::get('/user/profile',function ()
+// {
+//     return "UserProfile";
+// })->name('profile');
+// Route::get('/current-user',function (){
+//     //return redirect()->route('profile');
+//     //အပေါ်က ဟာ နဲ့ အောက်ကဟာအတူတူပဲ
+//     return to_route('profile');
+// });
+// Route::prefix('admin')->group(function () {
+//     //ဒီထဲမှာ /admin/နဲ့စမယ့်ဟာမှန်သမျှ ပေါင်းရေးလို့ရတယ်
+//     Route::get('/users', function () {
+//         return '/admin/users';
+// });
+// });
+// Route::name('admin.')->group(
+//     function () {
+//         Route::get('/users', function () {
+//             return '/users'; // but the route name is admin.user
+
+//     })->name('users');
+
+//     });  // ဒီဟာက ဆိုလိုတာက အတွင်းထဲက route တွေ နာမည်ပေးရင် admin. auto ထည့်ပေးတာ
+
+    // Route::fallback( function () {
+    //     return "Fallback";
+    //     //ဒါကျ ဘာရိုက်ရိုက် မရှိရင် ဒါပေါ်မှာ 
+    // });
+
+// php artisan route:list  ဒါက ဒီထဲရေးထားသမျှ route တွေပြမှာ
+// php artisan route:list -v ဒါက တူရာတူရာစုပြတာလို့ပြောရမလား 
+//php artisan route:list --except -vendor
+// Route::get("/sum/{a}/{b}", function (float $a,float $b) {
+//     return $a + $b;
+// })->whereNumber(['a','b']);
+// Route::get('/car',[CarController::class,'index']);
+//ဒါက carcontroller ထဲက index function ကို ခေါ်မှာ
+//Groups Routes By Controller
+//carcontroller ထဲကဟာ တွေ စုရေးချင်ရင်
+
+// Route::controller(CarController::class)->group(function(){
+//     Route::get('/car','index');
+//     Route::get('/my-car','myCar');
+// });
+
+// Single Action Controllers 
+//အဲဒါကကျ သူ့ထဲမှာ လုပ်စရာတစ်ခုတည်းပါတဲ့အခါမျိုးမှာ ဆောက်ကြတာ 
+//php artisan make::controller ShowCarController --invokable အဲ့လိုထည့်ဆောက်ရမှာ
+//တခြား controller တွေမှာလည်း default function ထည့်ချင်ရင် --invoke()ဆိုတဲ့ function ဆောက်ရင်ရတယ်။ 
+
+// Route::get('/car/show',ShowCarController::class);
+
+// //carcontroller မှာ အဲ့လို default ထည့်မယ်
+// Route::get('/car/default',CarController::class);
+
+//resource controller ဆိုတာက db table တွေအတွက် CRUD လုပ်တဲ့ funciton တွေ ( ၇ )ခုထည့်တခါတည်းထည့်ပေးလိုက်တဲ့ 
+//controller ဖြစ်တယ်။
+//php artisan make:contraoller ProductController --resource နဲ့ခေါ်ရတာ 
+// ခေါ်ရင်လည်း resource ထည့်ပြီး တစ်ခုသတ်မှတ်ရင်ရပြီ
+//ute::resource('/products',ProductController::class);
+// အဲဒါဆို php artisan route:list နဲ့ ကြည့်ရင် ခေါ်လို့ရတဲ့ route ၇ ခု ပေါ်လာမှာ 
+// အဲဒါကိုမှ destroy အတွက် မလိုချင်ရင် နောက်ကနေ ->except(['destroy']); အဲလိုထည့်လို့ရသလို
+// နည်းနည်းကိုပဲ သတ်မှတ်ချင်ရင် ->only(['index','store']); အဲ့လိုမျိုးလည်းသတ်မှတ်လို့ရတယ်
+//ute::resource('/product',ProductController::class)->except(['destroy']);
+
+// Route::resource('/product',ProductController::class)->only(['index','store']);
+//edit နဲ့ create မပါစေချင်ရင် apiResource ကို သုံး
+//ute::apiResource('/products',ProductController::class);
+//ဆောက်ကတည်းက api ဆောက်ရင် edit နဲ့ create မပါတဲ့ controller ပေးမှာ
+//ဥပမာ php artisan make:controller CarController -api
+ 
+
+//ပြီးရင် အဲ့တာတွေ အကုန်ပေါင်းသတ်မှတ်လည်းရ ဥပမာ
+// Route::apiResources([
+//     'cars'=> CarController::class,
+//     'product'=> ProductController::class
+// ]);
+
+// Route::controller(MathController::class)->group(function(){
+//     Route::get('/sum/{n1}/{n2}','sum');
+//     Route::get('/sub/{n1}/{n2}','sub');
+// });
+
+view ထဲမှာ blade file ကို cmd နဲ့ဆောက်ချင်ရင်
+php artisan make:view index
+views ထဲမှာ ဥပမာ home folder သက်သက်ထားရင်
+php artisan make:view home.index 
+Illuminate\Support\Facades\View အဲ့တာကို သုံးတာက 
+ // return view("home.index");
+        //return View:: make('home.index');
+       // return View::first(['index','home.index']);
+       first က ပထမ views ဖိုဒါထဲမှာ index file ရှိရင်အဲတာကိုပဲခေါ်ပြမှာ မရှိမှ နောက်ကဟာလုပ်မှာ
+       အပေါ်နှစ်ခုက အတူတူပဲဆိုပေမဲ့ အောက်ကလို first function တို့ exists function တို့လို တခြားအသုံးကျတဲ့ 
+       function တွေအများကြီးသုံးနိုင်
+
+        //views ထဲမှာ ဖိုင်မရှိရင် အောက်ကစာပေါ်မှာ 
+       if(!View::exists("index")){
+        dump("View does not exist");
+       }
+
+       view ထဲမှာ data  ထည့်ပေးတာ ပထမတစ်နည်းက associative array နဲ့ ပေးတာ ဒုတိယတစ်နည်းက နောက်ကနေ ->with(''->'')နဲ့ပေးတာ
+
+            // return view('home.index',[
+            //     'name'=> 'Thiri',
+            //     'surname'=>'Aung'
+            // ]) ;
+            return view('home.index')->with('name','Thiri')
+            ->with('surname','Aung');
+            ဒီမှာမပါဘဲ blade မှာ သုံးထားရင် variable မတွေ့တဲ့ undefine err တက်မယ်
+
+            data ကို ဘယ် view က ဖြစ်ဖြစ်ယူသုံးချင်ရင် App/Providers/AppServiceProvider.php ထဲက 
+            boot function ထဲကို View::share('dataname',data) အဲလိုထည့်ပေးလိုက်ရင် သုံးလို့ရ
+            

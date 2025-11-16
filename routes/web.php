@@ -1,10 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HelloController;
 
-Route::get('/', function () {
-    //  return view('welcome'); //ဒါက သူ့ default ခေါ်တဲ့ဟာ
-    // return "Creative Coder";
-    // return ["key"=>"Creative Coder"]; ဆိုလိုတာက view file ကိုပဲ return ပြန်လို့ရတာမဟုတ်ဘူး ဘာကိုထည့်ထည့် သူကပြောင်းပေါ်ပေးမှာ
-    return view('blogs');
-});
+use Illuminate\Support\Facades\Route;
+use function Termwind\renderUsing;
+
+
+Route::get("/", [HomeController::class,"index"])->name("home");
+
+Route::get("/hello", [HelloController::class,"welcome"])->name("hello");
