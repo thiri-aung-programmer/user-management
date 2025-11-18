@@ -1,0 +1,18 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+body{
+    background-color: antiquewhite;
+    margin:0;
+    padding: 0;
+    min-height: 100vh;
+}
+.page-signup{
+    background-color: beige;
+    
+}
+.page-login{
+    background-color: aqua;
+}

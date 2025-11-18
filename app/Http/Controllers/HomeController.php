@@ -16,12 +16,6 @@ class HomeController extends Controller
     //    }
     //    return View::make("home.index");
    
-            return view('home.index')->with('name','Thiri')
-            ->with('surname','Aung')
-            ->with('job','<b>Developer</b>')
-            // ဒီထဲမှာ <b> tag ( html tags )တွေကို ထည့်ပြီး ဟိုဘက်မှာ {{}} နဲ့ထုတ်ရင် အလုပ်မလုပ်ဘူး {!! !!} အဲ့လိုထုတ်မှထွက်မှာ
-            ->with('hobbies',['Tennis','Fishing'])
-            ->with('cars',[])
-            ->with('country','ge');
+            return view('home.index');
       }
 }
