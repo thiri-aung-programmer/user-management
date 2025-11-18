@@ -6,6 +6,15 @@
 
 {{-- content နေရာအတွက် data က များတော့ endsection ပါရမှာ --}}
 @section('content')
+{{-- <x-card>Card Content 1</x-card> --}}
+<x-card>
+     <x-slot name="title">Card Tile 1</x-slot>
+     Card Content 1
+     <x-slot name="footer">Card Footer 1</x-slot>
+</x-card>
+<x-admin.card />
+<x-admin.button></x-button>
+<x-admin.button/>
 <h1>Here is for the content data</h1>
 <div class="homeslider">
      Lorem ipsum dolor sit amet consectetur adipisicing elit. 
