@@ -1,3 +1,4 @@
+
 <h1>Hello From Laravel Course</h1>
-<h2>My Name is {{ $name }} {{ $surname }}.</h2>
-<p>Year: {{ $year }}</p>
+<p>Challange</p>
+@include('alert',['color'=>'blue','message'=>'Hi I am alert Msg']);

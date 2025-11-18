@@ -216,4 +216,204 @@ Illuminate\Support\Facades\View အဲ့တာကို သုံးတာက
 
             data ကို ဘယ် view က ဖြစ်ဖြစ်ယူသုံးချင်ရင် App/Providers/AppServiceProvider.php ထဲက 
             boot function ထဲကို View::share('dataname',data) အဲလိုထည့်ပေးလိုက်ရင် သုံးလို့ရ
+             {{--  blade မှာ run တဲ့ဟာတွေ အစ--}}
+
+            {{--  blade မှာ function တွေ သုံးလို့ရတယ် --}}
+
+{{ date('Y') }}
+
+<p>StringToUpperFunction :: {{ strtoupper($name." ".$surname) }}</p>
+
+<p>{!!  $job  !!}</p>
+<p>Str ရဲ့ after function : {{ Illuminate\Support\Str::after("hello world","Hello") }}</p> 
+{{-- string တစ်ခုအတွင်းမှာ သတ်မှတ်ထားတဲ့ စကားလုံး (substring) ကိုတွေ့သွားတဲ့နေရာကနေ နောက်ပိုင်းက text ကို ပြန်ထုတ်ပေးပါတယ်။ --}}
+<p>Laravel Version : {{ Illuminate\Foundation\Application::VERSION }}</p>
+{{--  laravel version ကို ထုတ်ပေးတာ --}}
+
+<p>PHP Version : {{ PHP_VERSION }}</p>
+
+
+
+{{-- {{ name  }}  ဒါကို ဒီတိုင်းပေါ်ချင်ရင် ရှေ့က @ ခံရမှာ မဟုတ်ရင် error တက်မယ်--}}
+@{{ name }}
+@something  {{--  ဒါက ဒီတိုင်းပေါ်မှာ --}}
+{{-- @foreach  ဒါက directive --}}
+@@foreach {{-- directive ကို ပြချင်ရင်ကျ ရှေ့က @ထည့် --}}
+
+{{-- အဲ့လိုဟာတွေ အများကြီးပြချင်ရင် @ တွေ လိုက်ထည့်မယ့်အစား @verbatim နဲ့ @endverbatim ကို သုံး --}}
+
+
+<div>
+    @verbatim
+    Name : {{ name }}
+    Age : {{ age }}
+    Job : {{ job }}
+    Hobbies : {{ hobbies }}
+    @if
+    @endverbatim
+</div>
+
+
+{{ Illuminate\Support\Js::FROM($hobbies) }}
+{{-- ဒကါ JSON.parse('[\u0022Tennis\u0022,\u0022Fishing\u0022]') အဲလိုထွက်မှာ --}}
+{{-- ဒါကိုမှ script ထဲမှာ သုံးကြည့်မယ်  ၊ ဒါပေမဲ့ run ရင်တော့ပေါ်မှာမဟုတ် console မှာပဲရှာလို့ရမှာ --}}
+
+<script>
+    const hobbies=JSON.parse('[\u0022Tennis\u0022,\u0022Fishing\u0022]');
+</script>
             
+{{-- directive နမူနာများ --}}
+
+@if(true)
+    This Will be displayed
+@endif
+
+
+
+@if(count($cars)>1)
+    <p>There is more than 1 car.</p>
+    @else
+    <p>There is no car.</p>
+@endif
+
+@unless(false)
+    <p>Unless</p>
+@endunless
+
+
+@isset($cars)
+<p>isset</p>
+@endisset
+
+@empty($cars)
+<p>empty</p>
+@endempty
+
+@auth
+<p>User is authenticated</p>
+@endauth
+
+
+@guest
+<p>User is guest</p>
+@endguest
+
+@switch($country)
+    @case('ge')
+    <p>Georgia</p>
+    @break
+    @case('uk')
+    <p>United Kingdom</p>
+    @break
+    @case('us')
+    <p>United States</p>
+    @break
+    @default 
+    <p>Unknown Country</p>
+
+@endswitch
+
+<p>loop directives</p>
+
+@for($i=0;$i<5;$i++)
+    <p>Loop : {{ $i + 1 }}</p>
+
+@endfor
+
+@forelse($cars as $car ) 
+{{-- သူက pure php မှာ မရှိဘူး ။ သူက empty  ကိုပါစစ်ပေးတာ --}}
+<p>Model :: {{ $car->model }}</p>
+@empty
+<p>There are no cars</p>
+@endforelse
+
+<p>continue နဲ့  break ( ကျော်ချတာနဲ့ အပြီးထွက်တာ )</p>
+@foreach ([1,2,3,4,5] as $n )
+    @if($n==2)
+    @continue
+    @endif
+    <p>Loop: {{ $n }}</p>
+
+@endforeach
+<p>နောက်တစ်နည်း</p>
+@foreach ([1,2,3,4,5] as $n )
+    
+    @continue($n==2)
+    
+    <p>Loop: {{ $n }}</p>
+
+@endforeach
+
+
+<p>@@break နမူနာ </p>
+@foreach ([1,2,3,4,5] as $item)
+    @break($item == 4)
+    <p>{{ $item }}</p>
+    
+@endforeach
+<p>Loop variables</p>
+@foreach ($hobbies as $h)
+    @foreach ($hobbies as $h)
+{{ $loop->iteration }}
+{{-- {{ dd($loop) }} --}}
+{{ $h }}
+{{ $loop->parent->depth }}
+
+@endforeach
+@endforeach
+
+//@class ဘာလို့သုံးတာလဲ နမူနာ
+<div @class([
+    'menu-item',
+    'active' => $isActive,
+    'disabled' => !$isClickable
+])>
+</div>
+အထက်ကဆိုရင်
+
+$isActive = true ဖြစ်ရင် active ထည့်မယ်
+
+$isClickable = false ဖြစ်ရင် disabled ထည့်မယ်
+
+သူတို့ condition မပြည့်ရင် auto ပြန်ဖျက်ပေးသွားပါတယ်။
+
+✔️ Why use it?
+
+class တွေကို if/else တွေနဲ့ မလမ်းရှုပ်အောင်
+
+readable, clean Blade code ရအောင်
+
+unnecessary class တွေကို Laravel က auto remove လုပ်ပေးလိုက်တာ
+
+<div @class(['my-css-class','gerogia'=>$country==='ge'])
+    @style([
+        'color:green',
+        'background-color:cyan'=>$country==='ge'
+    ])>
+    {{-- ဒီမှာဆိုရင် run ကြည့်လိုက်ရင် pagesource ထဲဝင်ကြည့်ရင် 'gerogia'ပေါ်နေလိမ့မယ် နောက်က condition မှန်နေလို့ --}}
+    {{-- style မှာလည်းအဲ့လိုပဲ နောက်က condition မှန်နေရင် လုပ်မှာ --}}
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+    Dolore pariatur recusandae neque non praesentium, possimus earum sint voluptatum 
+    voluptatem corporis consequatur corrupti, facere quis quasi cum impedit eveniet harum? 
+    Necessitatibus?
+</div>
+
+
+@include('shared.button',['color'=>'yellow','text'=>'Submit']);
+
+@php 
+    $cars=[1,2,3,4,5];
+@endphp
+@foreach ($cars as $car)
+    @include('car.view',['car'=>$car])
+@endforeach
+
+@each('car.view',$cars,'car','car.empty');
+{{-- ဒါကြီးနားမလည် အဖြေကတော့ ထွက်တယ်ဟ ဟိဟိ --}}
+             {{--  blade မှာ run တဲ့ဟာတွေ အဆုံး--}}
+
+ <?php 
+    use Illuminate\Broadcasting\Broadcasters\AblyBroadcaster;
+
+?> ဒီနှစ်ခုက အတူတူပဲ ဘယ်လိုရေးရေးရ 
+@use Illuminate\Broadcasting\Broadcasters\AblyBroadcaster; 

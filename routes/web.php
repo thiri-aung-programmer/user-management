@@ -9,4 +9,4 @@ use function Termwind\renderUsing;
 
 Route::get("/", [HomeController::class,"index"])->name("home");
 
-Route::get("/hello", [HelloController::class,"welcome"])->name("hello");
+// Route::get("/hello", [HelloController::class,"welcome"])->name("hello");
