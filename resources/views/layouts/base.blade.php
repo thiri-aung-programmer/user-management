@@ -1,3 +1,5 @@
+
+@props(['bodyClass'=>'','title'=>''])
 <!DOCTYPE html>
 <html lang="{{str_replace('_','-',app()->getLocale())}}">
 {{-- app မှာ ထည့်တဲ့ language ပေါ်မူတည်ပြီး ဒီမှာလာပေါ်မှာ တခါတလေလည်း es_ES အဲဒါမျိုးလည်း ဖြစ်နိုင်လို့ ထည့်စစ်ထားရတာ --}}
@@ -13,10 +15,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
     {{-- bootstrap link --}}
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <title>@yield('title') | {{ config('app.name' , 'Laravel') }}</title>
+    <title>{{$title}} | {{ config('app.name' , 'Laravel') }}</title>
     {{-- config(app.name) က env file မှာ ပါတဲ့ ထိပ်ဆုံးက နာမည် အဲ့မှာ မပါရင် Default က Laravel ပေါ်မှာ --}}
 </head>
-<body @isset($cssClass)class="{{$cssClass}}"@endisset>
-    @yield('childContent');
+<body @if($bodyClass)class="{{$bodyClass}}"@endif>
+    {{-- @yield('childContent'); --}}
+    {{ $slot }}
  </body>
 </html>

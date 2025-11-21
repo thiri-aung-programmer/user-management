@@ -1,33 +1,30 @@
-@extends('layouts.clean')
-@section('childContent')
+    @props(['title'=>'','footerLinks'=>''])
+<x-base-layout :$title>
     {{-- header ပိုင်း --}}
-    @include('layouts.partials.header');
+    {{-- @include('components.layouts.header'); --}}
+    <x-layouts.header/>
     {{-- header ပိုင်း --}}
   
     {{-- main content  --}}
-        @yield('content'); 
+        {{-- @yield('content');  --}}
+        {{ $slot }}
 
 
     {{-- main content  --}}
 
      {{-- footer အပိုင်း --}}
-     @hasSection('footerLinks') 
+     {{-- @hasSection('footerLinks')  --}}
      {{-- ဒါဆိုရင် footerLinks ပါမလာရင် ဒီနေရာ <footer></footer> ဆိုပြီး ပေါ်နေမှာမဟုတ်တော့ဘူး --}}
     <footer>
-       @section('footerLinks')
-
+       {{-- @section('footerLinks') --}}
+          
             <a href="#">Link 1</a>
             <a href="#">Link 2</a>
-            @show 
+             {{  $footerLinks }}
+            {{-- @show  --}}
             {{-- @show က @endsection @yield('footerLinks') နဲ့တူ index မှာ @parent မပါရင် ဒီ1 နဲ့ 2 က ပေါ်မှာမဟုတ် --}}
        
     </footer>
-    @endif
+    {{-- @endif --}}
     {{-- footer အပိုင်း --}}
-
-    
-@endsection
-   
-   
-</body>
-</html>
+</x-base-layout>

@@ -1,13 +1,5 @@
-{{-- app layout ကို သုံးမှာလို့ပြောလိုက်တာ --}}
-@extends('layouts.app')
+<x-app-layout title="Home Page">
 
-{{-- title နေရာအတွက် data ထည့်တာ --}}
-@section('title', " Home Page ");
-
-{{-- content နေရာအတွက် data က များတော့ endsection ပါရမှာ --}}
-@section('content')
-{{-- <x-card>Card Content 1</x-card> --}}
-{{-- <x-card color="red" bgColor="blue">  ဒီလိုမထည့်ဘဲ php နဲ့ variable ထဲထည့်လို့လည်းရ--}}
      @php
      $color="red";
      $bgColor="blue";
@@ -27,6 +19,10 @@
 <x-admin.button></x-button>
 <x-admin.button/>
 {{-- <x-search-form /> --}}
+<x-test-component class="card">
+     Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum pariatur minima corrupti, at blanditiis necessitatibus corporis voluptas nihil a ducimus molestiae eveniet placeat nesciunt vitae aliquam beatae voluptatibus obcaecati veniam.
+
+</x-test-component>
 <h1>Here is for the content data</h1>
 <div class="homeslider">
      Lorem ipsum dolor sit amet consectetur adipisicing elit. 
@@ -46,14 +42,27 @@
      {{-- New Car --}}
      <section class="fw-bold p-3 bg-success-subtle"> This is New car</section>
      {{-- New Car --}}
+     {{-- Car list --}}
+     <h2>This is Car Lists</h2>
+     <div class="car-lists row">
+          @for($i=0;$i<15;$i++)
+               <x-car-item/>
+          @endfor
+
+     </div>
 </main>
 </div>
-@endsection
 
 {{-- footer အတွက် --}}
-@section('footerLinks')
-     @parent
+<x-slot:footerLinks>
      <a href="#">Link 3</a>
      <a href="#">Link 4</a>
-@endsection
+</x-slot:footerLinks>
+{{-- @section('footerLinks')
+     @parent
+     
+@endsection --}}
+
+</x-app-layout>
+
 
